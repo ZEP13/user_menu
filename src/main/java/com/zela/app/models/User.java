@@ -15,6 +15,11 @@ public class User {
         this.nom = nom;
     }
 
+    public User(String nom, String prenom) {
+        this.nom = nom;
+        this.prenom = prenom;
+    }
+
     public User(ResultSet resultSet) throws SQLException {
         id = resultSet.getInt("id");
         prenom = resultSet.getString("prenom");
