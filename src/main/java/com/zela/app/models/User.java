@@ -1,0 +1,48 @@
+package com.zela.app.models;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class User {
+
+    private int id;
+    private String nom;
+    private String prenom;
+
+    public User(int id, String prenom, String nom) {
+        this.id = id;
+        this.prenom = prenom;
+        this.nom = nom;
+    }
+
+    public User(ResultSet resultSet) throws SQLException {
+        id = resultSet.getInt("id");
+        prenom = resultSet.getString("prenom");
+        nom = resultSet.getString("nom");
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+}
