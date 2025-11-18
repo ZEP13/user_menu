@@ -23,5 +23,6 @@ public class DeleteUser extends MenuAction {
         System.out.println("Entre l'Id de l'utilisateur que vous souhaite supprime");
         int id = Integer.parseInt(sc.nextLine());
 
+        serv.deleteById(id);
     }
 }
