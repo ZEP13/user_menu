@@ -27,6 +27,7 @@ public class Menu {
         while (true) {
             System.out.println("Faites votre choix :");
             int choice = scanner.nextInt();
+            scanner.nextLine();
             if (choice <= 0 || choice > actions.size()) {
                 System.out.println("Vous n'avez pas fait votre choix");
             } else {

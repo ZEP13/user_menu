@@ -24,6 +24,14 @@ public class UserService implements UserServiceInterface {
         }
     }
 
+    public User findById(int id) {
+        try {
+            return repository.findById(id);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public User update(User user) {
         validateForUpdate(user);
         try {
@@ -59,9 +67,6 @@ public class UserService implements UserServiceInterface {
 
         if (user.getPrenom() == null || user.getPrenom().isBlank())
             throw new UserException("contenu is required");
-
-        if (user.getId() <= 0)
-            throw new UserException("auteur_id is required and must be positive");
     }
 
     private void validateForUpdate(User a) {

@@ -11,10 +11,6 @@ public class AddUser extends MenuAction {
 
     private UserService serv;
 
-    public AddUser() {
-        super("Ajoute un utilisateur");
-    }
-
     public AddUser(UserService serv) {
         super("Ajoute un utilisateur");
         this.serv = serv;
@@ -28,7 +24,20 @@ public class AddUser extends MenuAction {
         System.out.println("Entre le nom");
         String nom = sc.nextLine();
 
-        serv.save(new User(nom, prenom));
+        String comfirm = ask("Confirmer l'ajout de l'utilisateur " + nom + " " + prenom + " ? (o/n) : ");
+
+        if (comfirm.isBlank() || comfirm.equalsIgnoreCase("o")) {
+            try {
+                serv.save(new User(nom, prenom));
+                System.out.println("Utilisateur " + nom + " " + prenom + " ajoute avec succes !");
+            } catch (Exception e) {
+                System.out.println("Erreur lors de l'ajout de l'utilisateur: " + e.getMessage());
+            }
+        } else
+
+        {
+            System.out.println("Ajout de l'utilisateur annule.");
+        }
     }
 
 }

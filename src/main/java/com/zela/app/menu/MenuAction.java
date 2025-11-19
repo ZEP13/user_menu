@@ -11,5 +11,10 @@ public abstract class MenuAction {
         return name;
     }
 
+    public String ask(String question) {
+        System.out.print(question);
+        return ScannerInstance.getInstance().nextLine();
+    }
+
     public abstract void execute();
 }

@@ -8,6 +8,8 @@ public interface UserRepository {
 
     User save(User user) throws Exception;
 
+    User findById(int id) throws Exception;
+
     User update(User user) throws Exception;
 
     boolean deleteById(int id) throws Exception;

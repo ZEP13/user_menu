@@ -45,6 +45,22 @@ public class JdbcUserRepository implements UserRepository {
     }
 
     @Override
+    public User findById(int id) throws SQLException {
+        String sql = "SELECT * FROM users WHERE id = ?";
+        try (Connection c = dbConfig.getConnection();
+                PreparedStatement ps = c.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return new User(rs);
+                } else {
+                    return null;
+                }
+            }
+        }
+    }
+
+    @Override
     public User update(User user) throws SQLException {
         if (user.getId() == 0) {
             throw new SQLException("echec update car id invalide");
@@ -67,7 +83,7 @@ public class JdbcUserRepository implements UserRepository {
 
     @Override
     public boolean deleteById(int id) throws SQLException {
-        String sql = "DELETE * FROM  users WHERE id = ?";
+        String sql = "DELETE FROM  users WHERE id = ?";
         try (Connection c = dbConfig.getConnection();
                 PreparedStatement ps = c.prepareStatement(sql)) {
             ps.setInt(1, id);

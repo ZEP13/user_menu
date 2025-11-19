@@ -11,7 +11,13 @@ public class ExitMenu extends MenuAction {
 
     @Override
     public void execute() {
-        ScannerInstance.getInstance().close();
-        System.exit(0);
+        String confirm = ask("Es-tu sur de vouloir quitter ? (o/n) : ");
+
+        if (confirm.isBlank() || confirm.equalsIgnoreCase("o")) {
+            ScannerInstance.getInstance().close();
+            System.exit(0);
+        } else {
+            System.out.println("Fermeture du menu...");
+        }
     }
 }

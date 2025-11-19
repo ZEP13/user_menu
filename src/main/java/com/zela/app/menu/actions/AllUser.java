@@ -10,10 +10,6 @@ public class AllUser extends MenuAction {
 
     private UserService serv;
 
-    public AllUser() {
-        super("Voir tout les utilisateurs");
-    }
-
     public AllUser(UserService serv) {
         super("Voir tout les utilisateurs");
         this.serv = serv;
@@ -22,9 +18,15 @@ public class AllUser extends MenuAction {
     @Override
     public void execute() {
 
-        List<User> users = serv.allUser();
-        for (User user : users) {
-            System.out.println("ID: " + user.getId() + "NOM: " + user.getNom() + "PRENOM: " + user.getPrenom());
+        try {
+            List<User> users = serv.allUser();
+            for (User user : users) {
+                System.out.println("ID: " + user.getId() + " | " + " NOM: " + user.getNom() + " | " + " PRENOM: "
+                        + user.getPrenom());
+            }
+
+        } catch (Exception e) {
+            System.out.println("Erreur lors de la recuperation des utilisateurs: " + e.getMessage());
         }
 
     }
