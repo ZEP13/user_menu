@@ -2,6 +2,7 @@ package com.zela.app.menu.actions;
 
 import java.util.List;
 
+import com.zela.app.exceptions.UserException;
 import com.zela.app.menu.MenuAction;
 import com.zela.app.models.User;
 import com.zela.app.services.servicesImplementations.UserService;
@@ -25,8 +26,8 @@ public class AllUser extends MenuAction {
                         + user.getPrenom());
             }
 
-        } catch (Exception e) {
-            System.out.println("Erreur lors de la recuperation des utilisateurs: " + e.getMessage());
+        } catch (UserException e) {
+            System.out.println("Erreur : " + e.getMessage());
         }
 
     }

@@ -2,6 +2,7 @@ package com.zela.app.menu.actions;
 
 import java.util.Scanner;
 
+import com.zela.app.exceptions.UserException;
 import com.zela.app.menu.MenuAction;
 import com.zela.app.menu.ScannerInstance;
 import com.zela.app.models.User;
@@ -53,8 +54,8 @@ public class UpdateUser extends MenuAction {
 
                 User updatedUser = serv.update(user);
                 System.out.println("User mis a jour:" + updatedUser.getPrenom() + " " + updatedUser.getNom());
-            } catch (Exception e) {
-                System.out.println("Erreur lors de la mise a jour de l'utilisateur: " + e.getMessage());
+            } catch (UserException e) {
+                System.out.println("Erreur : " + e.getMessage());
             }
         } else {
             System.out.println("Mise a jour de l'utilisateur annule.");

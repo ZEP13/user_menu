@@ -2,6 +2,7 @@ package com.zela.app.menu.actions;
 
 import java.util.Scanner;
 
+import com.zela.app.exceptions.UserException;
 import com.zela.app.menu.MenuAction;
 import com.zela.app.menu.ScannerInstance;
 import com.zela.app.models.User;
@@ -33,8 +34,8 @@ public class DeleteUser extends MenuAction {
 
                 serv.deleteById(id);
                 System.out.println("Utilisateur avec l'id " + id + " supprime avec succes !");
-            } catch (Exception e) {
-                System.out.println("Erreur lors de la suppression de l'utilisateur: " + e.getMessage());
+            } catch (UserException e) {
+                System.out.println("Erreur : " + e.getMessage());
             }
         } else {
             System.out.println("Suppression de l'utilisateur annule.");

@@ -2,6 +2,7 @@ package com.zela.app.menu.actions;
 
 import java.util.Scanner;
 
+import com.zela.app.exceptions.UserException;
 import com.zela.app.menu.MenuAction;
 import com.zela.app.menu.ScannerInstance;
 import com.zela.app.models.User;
@@ -30,9 +31,10 @@ public class AddUser extends MenuAction {
             try {
                 serv.save(new User(nom, prenom));
                 System.out.println("Utilisateur " + nom + " " + prenom + " ajoute avec succes !");
-            } catch (Exception e) {
-                System.out.println("Erreur lors de l'ajout de l'utilisateur: " + e.getMessage());
+            } catch (UserException e) {
+                System.out.println("Erreur : " + e.getMessage());
             }
+
         } else
 
         {

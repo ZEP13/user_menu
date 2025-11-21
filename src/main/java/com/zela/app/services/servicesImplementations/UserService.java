@@ -1,5 +1,6 @@
 package com.zela.app.services.servicesImplementations;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import com.zela.app.exceptions.UserException;
@@ -19,16 +20,16 @@ public class UserService implements UserServiceInterface {
         validateForCreate(user);
         try {
             return repository.save(user);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new UserException("Error saving user: ", e);
         }
     }
 
     public User findById(int id) {
         try {
             return repository.findById(id);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new UserException("Error finding user by id", e);
         }
     }
 
@@ -36,25 +37,28 @@ public class UserService implements UserServiceInterface {
         validateForUpdate(user);
         try {
             return repository.update(user);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new UserException("Error updating user", e);
         }
     }
 
     public boolean deleteById(int id) {
         validateForDelete(id);
+        // if (findById(id) == null) {
+        // throw new UserException("User with id " , id + " does not exist");
+        // }
         try {
             return repository.deleteById(id);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new UserException("Error deleting user", e);
         }
     }
 
     public List<User> allUser() {
         try {
             return repository.allUser();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new UserException("Error getting list all users", e);
         }
     }
 
