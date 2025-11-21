@@ -1,10 +1,7 @@
 package com.zela.app.menu.actions;
 
-import java.util.Scanner;
-
 import com.zela.app.exceptions.UserException;
 import com.zela.app.menu.MenuAction;
-import com.zela.app.menu.ScannerInstance;
 import com.zela.app.models.User;
 import com.zela.app.services.servicesImplementations.UserService;
 
@@ -17,23 +14,16 @@ public class DeleteUser extends MenuAction {
     }
 
     public void execute() {
-        Scanner sc = ScannerInstance.getInstance();
-        System.out.println("Entre l'Id de l'utilisateur que vous souhaite supprime");
-        int id = Integer.parseInt(sc.nextLine());
-
-        User user = serv.findById(id);
-        if (user == null) {
-            System.out.println("Utilisateur avec l'id " + id + " non trouve !");
+        User user = getIdUserDetails(serv, "supprimer");
+        if (user == null)
             return;
-        }
-        System.out.println("Utilisateur trouve: " + user.getPrenom() + " " + user.getNom());
 
-        String comfirm = ask("Confirmer la suppression de l'utilisateur avec l'id " + id + " ? (o/n) : ");
+        String comfirm = ask("Confirmer la suppression de l'utilisateur avec l'id " + user.getId() + " ? (o/n) : ");
         if (comfirm.isBlank() || comfirm.equalsIgnoreCase("o")) {
             try {
 
-                serv.deleteById(id);
-                System.out.println("Utilisateur avec l'id " + id + " supprime avec succes !");
+                serv.deleteById(user.getId());
+                System.out.println("Utilisateur avec l'id " + user.getId() + " supprime avec succes !");
             } catch (UserException e) {
                 System.out.println("Erreur : " + e.getMessage());
             }

@@ -19,18 +19,15 @@ public class AddUser extends MenuAction {
 
     @Override
     public void execute() {
-        Scanner sc = ScannerInstance.getInstance();
-        System.out.println("Entre le prenom");
-        String prenom = sc.nextLine();
-        System.out.println("Entre le nom");
-        String nom = sc.nextLine();
+        User user = askUserDetails(null);
 
-        String comfirm = ask("Confirmer l'ajout de l'utilisateur " + nom + " " + prenom + " ? (o/n) : ");
+        String comfirm = ask(
+                "Confirmer l'ajout de l'utilisateur " + user.getNom() + " " + user.getPrenom() + " ? (o/n) : ");
 
         if (comfirm.isBlank() || comfirm.equalsIgnoreCase("o")) {
             try {
-                serv.save(new User(nom, prenom));
-                System.out.println("Utilisateur " + nom + " " + prenom + " ajoute avec succes !");
+                serv.save(new User(user.getNom(), user.getPrenom()));
+                System.out.println("Utilisateur " + user.getNom() + " " + user.getPrenom() + " ajoute avec succes !");
             } catch (UserException e) {
                 System.out.println("Erreur : " + e.getMessage());
             }
