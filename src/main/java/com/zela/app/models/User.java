@@ -16,6 +16,12 @@ public class User {
     }
 
     public User(String nom, String prenom) {
+        if (nom == null || nom.isBlank()) {
+            throw new IllegalArgumentException("Le nom ne peut pas être vide");
+        }
+        if (prenom == null || prenom.isBlank()) {
+            throw new IllegalArgumentException("Le prénom ne peut pas être vide");
+        }
         this.nom = nom;
         this.prenom = prenom;
     }
@@ -24,6 +30,9 @@ public class User {
         id = resultSet.getInt("id");
         prenom = resultSet.getString("prenom");
         nom = resultSet.getString("nom");
+    }
+
+    public User() {
     }
 
     public String getNom() {

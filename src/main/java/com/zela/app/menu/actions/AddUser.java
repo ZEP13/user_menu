@@ -1,10 +1,7 @@
 package com.zela.app.menu.actions;
 
-import java.util.Scanner;
-
 import com.zela.app.exceptions.UserException;
 import com.zela.app.menu.MenuAction;
-import com.zela.app.menu.ScannerInstance;
 import com.zela.app.models.User;
 import com.zela.app.services.servicesImplementations.UserService;
 

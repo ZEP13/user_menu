@@ -24,6 +24,10 @@ public abstract class MenuAction {
     public User askUserDetails(User current) {
         Scanner sc = ScannerInstance.getInstance();
 
+        if (current == null) {
+            current = new User();
+        }
+
         System.out.print("Prénom (" + current.getPrenom() + ") : ");
         String prenom = sc.nextLine();
         if (prenom.isBlank())
@@ -47,13 +51,13 @@ public abstract class MenuAction {
         try {
             id = Integer.parseInt(sc.nextLine());
         } catch (NumberFormatException e) {
-            System.out.println("Id invalide !");
+            System.out.println("Id invalide");
             return null;
         }
 
         User user = serv.findById(id);
         if (user == null) {
-            System.out.println("Utilisateur avec l'id " + id + " non trouve !");
+            System.out.println("Utilisateur avec l'id " + id + " non trouve");
         } else {
             System.out.println("Utilisateur trouve: " + user.getPrenom() + " " + user.getNom());
 
